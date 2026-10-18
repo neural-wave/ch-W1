@@ -53,7 +53,13 @@ gate and remain disabled; see [experiment details](docs/experiments/GEOMETRY.md)
 
 ## Install and test
 
-Use Python 3.12, matching the recorded artifact environment. If using uv:
+Use Python 3.12, matching the recorded artifact environment. 
+
+If you don't have [`uv`](https://docs.astral.sh/uv/) installed, run:
+- **macOS / Linux:** `curl -LsSf https://astral.sh/uv/install.sh | sh`
+- **Windows (PowerShell):** `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+
+Once `uv` is installed, set up the environment and run the tests:
 
 ```bash
 uv python install 3.12
@@ -122,7 +128,7 @@ You tested the model on your own days and want to see the results as charts. It 
 |---|---|
 | `test_hourly.csv` | The 24 hourly prices of each day you want to test. |
 | `history_15min.csv` | The real 15-minute prices of the days *before* your test days. |
-| `truth_15min.csv` | The real 15-minute prices of your test days, so the dashboard can tell how close the model came. Same columns as the training file: `delivery_date, market_id, hour_index, quarter_index, price_eur_mwh`. Every test day must be complete: 96 quarter-hours for each of the 4 zones. |
+| `git.csv` | The real 15-minute prices of your test days, so the dashboard can tell how close the model came. Same columns as the training file: `delivery_date, market_id, hour_index, quarter_index, price_eur_mwh`. Every test day must be complete: 96 quarter-hours for each of the 4 zones. |
 
 **Step 1: let the model make its predictions.** Run this in the terminal, from the repository folder:
 
@@ -170,15 +176,17 @@ flagged as risky.
 
 | Path | Content |
 |---|---|
-| `aet/` | Model package: training (`aet.train`), inference (`aet.infer`), backtest, features, history |
-| `configs/` | `core.yaml` (folds, candidates), `final.yaml` (frozen submission), `experiments/` (not promoted) |
-| `artifacts_official/` | Trained model used for submission (full training year) |
-| `artifacts_september_assessment/` | Same recipe trained through 2026-08-31; used only by the dashboard |
-| `data/` | Official training CSV (`train_prices_15min.csv`) and its documentation |
-| `analysis/` | EDA notebook, reports and figures |
-| `dashboard/` | Optional Streamlit dashboard |
-| `docs/` | Methodology, submission contract, provenance, AI usage, references, experiment notes |
+| `README.md`, `pyproject.toml`, `requirements.txt` | This guide, package metadata and dependencies |
+| `aet/` | Model package: training (`aet.train`), inference (`aet.infer`), backtest, baselines, basis, features, history, models, volatility, schema checks, EDA helpers |
+| `configs/` | `core.yaml` (folds, candidates), `final.yaml` (frozen submission), `experiments/` (ablations, e6, geometry, memory, volatility; not promoted) |
+| `artifacts_official/` | Trained model used for submission (full training year): `manifest.json`, `history_store.npz`, `lgbm_coef_*.txt` |
+| `artifacts_september_assessment/` | Same recipe trained through 2026-08-31, same file set; used only by the dashboard |
+| `data/` | Official training CSV (`train_prices_15min.csv`), `README.md` and the original `README_participants.txt` |
+| `analysis/` | `notebooks/EDA_final.ipynb`, `reports/` (EDA analysis, feature engineering), `figures/` (`eda_final/`, `september_report/`) |
+| `dashboard/` | Optional Streamlit dashboard (`app.py` entry point, one module per page, precomputed 80% intervals in `september_80.json`) |
+| `deliverables/` | `README.md` with the video link (max 2 minutes), 3-page report: `report.pdf` |
+| `docs/` | Methodology, submission contract, provenance, AI usage, references, `experiments/` notes (geometry, volatility) |
 | `tests/` | Unit and end-to-end tests (synthetic data, no network) |
-| `tools/` | Official-metric scorer and report figures |
-| `results/` | Curated results table and reproduction commands |
-| `report/`, `video/` | Deliverables: 3-page report and video link |
+| `tools/` | Official-metric scorer (`score.py`) and September report figures (`report_assessment.py`) |
+| `results/` | Curated results table (`summary.csv`) and reproduction commands (`README.md`) |
+
