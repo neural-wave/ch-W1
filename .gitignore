@@ -1,0 +1,24 @@
+.DS_Store
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv*/
+*.Rhistory
+dist/
+.agents*
+.claude*
+
+# Generated outputs; only the curated summary is committed
+results/*
+!results/README.md
+!results/summary.csv
+artifacts_retrained/
+predictions.csv
+
+/AET-HACKATHON/
+
+# Temporary input for rebuilding artifacts_september_assessment (see dashboard/README.md)
+data/train_through_august.csv
+
+# Assistant instructions (kept locally, not part of the submission)
+CLAUDE.md
