@@ -2,7 +2,7 @@
 
 Reconstructing 15-minute electricity prices from hourly averages while preserving each hour’s mean.
 
-Reconstruct 96 quarter-hour prices from 24 supplied hourly prices per zone, preserving every
+The objective of this repo is to reconstruct 96 quarter-hour prices from 24 supplied hourly prices per zone, preserving every
 hourly average within 0.0001 EUR/MWh. This is constrained reconstruction, not hourly forecasting.
 
 The only data source is the official participant package, already included in data/ (see [data/README.md](data/README.md)).
