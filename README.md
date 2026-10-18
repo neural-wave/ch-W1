@@ -1,4 +1,6 @@
-# AET Neural Wave: official-data reconstruction
+# Beyond the Hourly Average: Quarter-Hour Electricity Price Reconstruction
+
+Reconstructing 15-minute electricity prices from hourly averages while preserving each hour’s mean.
 
 Reconstruct 96 quarter-hour prices from 24 supplied hourly prices per zone, preserving every
 hourly average within 0.0001 EUR/MWh. This is constrained reconstruction, not hourly forecasting.
