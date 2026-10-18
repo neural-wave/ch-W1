@@ -1,0 +1,141 @@
+{
+  "package_version": "0.1.0",
+  "config": {
+    "name": "final",
+    "baseline": "pchip",
+    "basis": "poly",
+    "model": "lgbm_coef",
+    "model_params": {
+      "learning_rate": 0.05,
+      "num_leaves": 15,
+      "min_data_in_leaf": 100
+    },
+    "num_boost_round": 1000,
+    "features": {
+      "history": true,
+      "cross_zone": true,
+      "prev_day_edge": true,
+      "volatility_history": false,
+      "local_geometry": false,
+      "extrema_distance": false
+    },
+    "residual_scale": 0.8,
+    "recency_halflife_days": null,
+    "memory": null,
+    "shrinkage": null,
+    "couple_tol": 0.1,
+    "partial_tie": {
+      "tol": 5.0,
+      "alpha": 0.4
+    },
+    "forward_scale": null,
+    "price_floor": -0.01,
+    "price_ceiling": 0.0,
+    "zones": [
+      "ZONE_0",
+      "ZONE_1",
+      "ZONE_2",
+      "ZONE_3"
+    ],
+    "seed": 42
+  },
+  "model": {
+    "files": [
+      "lgbm_coef_0.txt",
+      "lgbm_coef_1.txt",
+      "lgbm_coef_2.txt"
+    ],
+    "feature_names": [
+      "zone",
+      "hour",
+      "weekday",
+      "weekend",
+      "season_sin",
+      "season_cos",
+      "level",
+      "slope_m2",
+      "slope_m1",
+      "slope_p1",
+      "slope_p2",
+      "curvature",
+      "day_mean",
+      "day_range",
+      "day_std",
+      "day_negative_hours",
+      "relative_level",
+      "z0_spread",
+      "z0_slope_m1",
+      "z0_slope_p1",
+      "z1_spread",
+      "z1_slope_m1",
+      "z1_slope_p1",
+      "z2_spread",
+      "z2_slope_m1",
+      "z2_slope_p1",
+      "z3_spread",
+      "z3_slope_m1",
+      "z3_slope_p1",
+      "base_c1",
+      "base_c2",
+      "base_c3",
+      "lag1_c1",
+      "lag1_c2",
+      "lag1_c3",
+      "lag7_c1",
+      "lag7_c2",
+      "lag7_c3",
+      "mean7_c1",
+      "mean7_c2",
+      "mean7_c3",
+      "n7",
+      "mean28_c1",
+      "mean28_c2",
+      "mean28_c3",
+      "n28"
+    ]
+  },
+  "basis_matrix": [
+    [
+      -0.6708203932499369,
+      0.5,
+      -0.22360679774997896
+    ],
+    [
+      -0.22360679774997896,
+      -0.5,
+      0.6708203932499369
+    ],
+    [
+      0.22360679774997896,
+      -0.5,
+      -0.6708203932499369
+    ],
+    [
+      0.6708203932499369,
+      0.5,
+      0.22360679774997896
+    ]
+  ],
+  "memory": null,
+  "shrink_scale": null,
+  "fitted_scale": null,
+  "training_range": [
+    "2025-10-01",
+    "2026-08-31"
+  ],
+  "versions": {
+    "python": "3.12.13",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "lightgbm": "4.7.0"
+  },
+  "trained_at": "2026-10-18T01:08:01",
+  "train_seconds": 4.8,
+  "training_csv": "train_through_august.csv",
+  "training_csv_sha256": "2ef047d6daa3c7b95c23c3cf718d99c9b2f2e25a62b192c69cc3da9f93f38456",
+  "training_rows": 127872,
+  "training_dates": 333,
+  "config_file": "configs/final.yaml",
+  "config_sha256": "c615197f0f68d98097ecaaf68d65d9505d161f34d4447eac463748b0f85d9474"
+}

@@ -1,0 +1,13 @@
+# E5: one change at a time against the incumbent. Inherits folds, gate and defaults.
+#   python -m aet.backtest --train data/train_prices_15min.csv --config configs/experiments/ablations.yaml --reference E3_coef_hist
+extends: ../core.yaml
+candidates:
+  - {name: E3_coef_hist}                                   # incumbent
+  - {name: E5_haar, basis: haar}
+  - {name: E5_akima, baseline: akima}
+  - {name: E5_spline, baseline: spline}                   # best parameter-free baseline in the EDA
+  - {name: E5_scale_0.8, residual_scale: 0.8}
+  - {name: E5_recency_90d, recency_halflife_days: 90}
+  - {name: E5_no_prev_day_edge, features: {prev_day_edge: false}}
+  - {name: E5_no_cross_zone, features: {cross_zone: false}}
+  - {name: E5_trees_200, num_boost_round: 200}

@@ -1,0 +1,11 @@
+method,window,mae,ZONE_0,ZONE_1,ZONE_2,ZONE_3,improvement_vs_flat_pct
+flat,dev_jan_aug_monthly_folds,8.1276,8.6808,10.1506,5.8485,7.8305,0.00
+pchip,dev_jan_aug_monthly_folds,5.6185,5.2235,7.0873,4.4967,5.6663,30.87
+coef_hist_unscaled,dev_jan_aug_monthly_folds,3.9838,3.1888,4.6180,3.7554,4.3728,50.98
+i2_previous_final,dev_jan_aug_monthly_folds,3.9479,3.0769,4.6240,3.7022,4.3885,51.43
+final,dev_jan_aug_monthly_folds,3.8883,3.0586,4.5480,3.6583,4.2883,52.16
+flat,sep_19_30_holdout,10.8988,10.7839,13.3021,9.7233,9.7860,0.00
+pchip,sep_19_30_holdout,6.9270,5.7282,8.5809,7.4874,5.9116,36.44
+coef_hist_unscaled,sep_19_30_holdout,5.4270,4.4518,6.7700,5.5083,4.9781,50.21
+i2_previous_final,sep_19_30_holdout,5.0442,3.8593,6.2572,5.5064,4.5539,53.72
+final,sep_19_30_holdout,5.0035,3.8274,6.1230,5.4916,4.5722,54.09

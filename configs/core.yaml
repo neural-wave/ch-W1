@@ -1,0 +1,39 @@
+# Experiment ladder E0-E3 (+ E2b price-space contender).
+#   python -m aet.backtest --train data/train_prices_15min.csv --config configs/core.yaml
+#   python -m aet.backtest --train data/train_prices_15min.csv --config configs/core.yaml --folds monthly
+seed: 42
+zones: [ZONE_0, ZONE_1, ZONE_2, ZONE_3]
+
+folds:
+  scheme: explicit              # roadmap folds; --folds monthly scores Jan..Aug 2026 instead
+  list:
+    - {name: dev_apr, train_end: 2026-03-31, score_start: 2026-04-19, score_end: 2026-04-30}
+    - {name: dev_jun, train_end: 2026-05-31, score_start: 2026-06-19, score_end: 2026-06-30}
+    - {name: dev_aug, train_end: 2026-07-31, score_start: 2026-08-19, score_end: 2026-08-31}
+  first_train_end: 2025-12-31   # monthly scheme: first fold scores 19-31 Jan 2026
+  last_train_end: 2026-07-31    # monthly scheme: last fold scores 19-31 Aug 2026
+  score_from_day: 19
+
+# Opened once, after freezing (--include-locked). Never used to tune.
+locked: {name: locked_sep, train_end: 2026-08-31, score_start: 2026-09-19, score_end: 2026-09-30}
+
+# Promotion gate versus the reference candidate (--reference, default: first candidate).
+gate: {min_rel_improvement: 0.005, min_fold_share: 0.66, max_zone_degradation: 0.02}
+
+defaults:
+  baseline: pchip
+  basis: poly
+  model: lgbm_coef
+  num_boost_round: 500
+  residual_scale: 1.0
+  model_params: {learning_rate: 0.05, num_leaves: 15, min_data_in_leaf: 100}
+  features: {history: true, cross_zone: true, prev_day_edge: true}
+
+candidates:
+  - {name: E0_flat, baseline: flat, model: none}
+  - {name: E1_linear, baseline: linear, model: none}
+  - {name: E1_pchip, model: none}
+  - {name: E2_coef, features: {history: false}}
+  - {name: E2b_quarter, model: lgbm_quarter, features: {history: false}}
+  - {name: E3_coef_hist}
+  - {name: E3b_quarter_hist, model: lgbm_quarter}

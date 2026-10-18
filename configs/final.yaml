@@ -1,0 +1,14 @@
+# The submission (I3 = I2 + mean-preserving post-processing; see docs/METHODOLOGY.md sections 2 and 4).
+#   python -m aet.train --train data/train_prices_15min.csv --config configs/final.yaml --out artifacts
+# The other candidates are references for the locked September report:
+#   python -m aet.backtest --train data/train_prices_15min.csv --config configs/final.yaml \
+#       --folds monthly --include-locked --reference I2
+extends: core.yaml
+candidates:
+  - {name: final, final: true, residual_scale: 0.8, num_boost_round: 1000, couple_tol: 0.1,
+     partial_tie: {tol: 5.0, alpha: 0.4}, price_floor: -0.01, price_ceiling: 0.0,
+     features: {prev_day_edge: true}}                                                     # = I3
+  - {name: I2, residual_scale: 0.8, features: {prev_day_edge: true}}                     # previous final
+  - {name: E0_flat, baseline: flat, model: none}
+  - {name: E1_pchip, model: none}
+  - {name: E3_coef_hist}                     # handoff default before the E5 round

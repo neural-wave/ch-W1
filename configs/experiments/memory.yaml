@@ -1,0 +1,12 @@
+# E4: curve-conditioned analogue memory against the incumbent (E3 + residual scale 0.8).
+#   python -m aet.backtest --train data/train_prices_15min.csv --config configs/experiments/memory.yaml --folds monthly
+extends: ../core.yaml
+defaults:
+  residual_scale: 0.8                     # promoted in the E5 round (see docs/METHODOLOGY.md 7.2)
+candidates:
+  - {name: I1_e3_s08}                                        # incumbent
+  - {name: E4_k8, memory: {k: 8, window_days: 180}}
+  - {name: E4_k16, memory: {k: 16, window_days: 180}}
+  - {name: E4_k32, memory: {k: 32, window_days: 180}}
+  - {name: E4_k16_full, memory: {k: 16, window_days: null}}   # 180 days before October is summer-heavy
+  - {name: I1_no_prev_day_edge, features: {prev_day_edge: false}}   # simplification re-check

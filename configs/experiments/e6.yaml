@@ -1,0 +1,12 @@
+# E6: one specialised assumption, at most one promoted. Reference: incumbent I2.
+#   python -m aet.backtest --train data/train_prices_15min.csv --config configs/experiments/e6.yaml --folds monthly
+extends: ../core.yaml
+defaults:
+  residual_scale: 0.8                     # promoted in round 1 (docs/METHODOLOGY.md 7.2)
+  features: {prev_day_edge: true}       
+candidates:
+  - {name: I2}                                                   # incumbent
+  - {name: E6_shrink_l0.1, shrinkage: {lambda: 0.1}}
+  - {name: E6_shrink_l0.3, shrinkage: {lambda: 0.3}}
+  - {name: E6_quantile, model: lgbm_quantile}
+  - {name: E6_quantile_s1, model: lgbm_quantile, residual_scale: 1.0}   # diagnostic: the scale was chosen for lgbm_coef

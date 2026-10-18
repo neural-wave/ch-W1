@@ -1,0 +1,13 @@
+# Exploratory development comparison. Do not use --include-locked or overwrite final artifacts.
+extends: ../core.yaml
+defaults:
+  residual_scale: 0.8
+  features: {history: true, cross_zone: true, prev_day_edge: true}
+candidates:
+  - {name: incumbent}
+  - {name: flat, baseline: flat, model: none}
+  - {name: linear_x1, baseline: linear, model: none}
+  - {name: pchip, model: none}
+  - {name: linear_x2, baseline: linear_x2, model: none}
+  - {name: local_geometry, features: {local_geometry: true}}
+  - {name: extrema_distance, features: {extrema_distance: true}}

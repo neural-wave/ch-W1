@@ -1,0 +1,9 @@
+[project]
+name = "aet-neural-wave"
+version = "0.1.0"
+description = "Hourly to quarter-hourly electricity price shape reconstruction (AET Neural Wave 2026)"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

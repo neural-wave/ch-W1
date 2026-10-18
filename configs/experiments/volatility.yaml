@@ -1,0 +1,9 @@
+# Separate research experiment. Does not modify configs/final.yaml or frozen artifacts.
+# Development only; never add --include-locked for selecting this extension.
+extends: ../core.yaml
+defaults:
+  residual_scale: 0.8
+  features: {history: true, cross_zone: true, prev_day_edge: true}
+candidates:
+  - {name: incumbent}
+  - {name: magnitude_history, features: {volatility_history: true}}
